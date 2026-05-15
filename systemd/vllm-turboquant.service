@@ -1,0 +1,25 @@
+[Unit]
+Description=vLLM TurboQuant API Server
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=simple
+# systemd does not expand env vars in WorkingDirectory=, so we let the script
+# handle cd into VLLM_ROOT. We still allow overriding VLLM_ROOT via /etc/default.
+Environment=VLLM_ROOT=/opt/ithalo-lab/vllm
+Environment=VLLM_PYTHON=/root/anaconda3/bin/python3
+Environment=HOME=/root
+Environment=LANG=C.UTF-8
+Environment=LC_ALL=C.UTF-8
+Environment=PATH=/root/anaconda3/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
+EnvironmentFile=-/etc/default/vllm-turboquant
+ExecStart=/bin/bash -c 'exec "${VLLM_ROOT}/start_vllm.sh"'
+Restart=on-failure
+RestartSec=3
+TimeoutStopSec=30
+KillSignal=SIGINT
+LimitNOFILE=1048576
+
+[Install]
+WantedBy=multi-user.target

@@ -1,0 +1,28 @@
+# vLLM config template
+# Copy to `config.yaml` and adjust paths/limits for your GPU.
+
+# Model directory (must contain config.json)
+model: /data/models/huggingface/Qwen__Qwen3.5-9B
+
+# Tokenizer (usually same as model dir)
+tokenizer: /data/models/huggingface/Qwen__Qwen3.5-9B
+
+# Context / memory
+# NOTE: Tune `max_model_len` to fit your GPU VRAM.
+max_model_len: 49104
+gpu_memory_utilization: 0.90
+
+# Performance knobs
+enable_prefix_caching: false
+max_num_seqs: 4
+
+# OpenAI-compatible API settings
+served_model_name: Qwen-3.5-9B-SAE
+enable_auto_tool_choice: true
+tool_call_parser: qwen3_coder
+
+# Safety / compatibility
+trust_remote_code: true
+
+# API key (optional). Prefer setting via env / reverse proxy.
+# api_key: "CHANGE_ME"

@@ -1,0 +1,8 @@
+venv/
+# Config local (use config.example.yaml no repo)
+config.yaml
+__pycache__/
+*.pyc
+*.pyo
+.python-version
+.env

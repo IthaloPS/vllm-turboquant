@@ -1,0 +1,2 @@
+# TurboQuant empacotado em third_party/ (instalação editável + extra vLLM).
+-e ./third_party/turboquant[vllm]
